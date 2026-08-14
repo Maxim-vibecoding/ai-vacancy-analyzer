@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700&display=swap');
+
+:root {
+  --font-display: 'Syne', 'Avenir Next', sans-serif;
+  --font-body: 'Manrope', 'Segoe UI', sans-serif;
+  --ink: #14201c;
+  --ink-soft: #24342e;
+  --muted: #5b6a63;
+  --teal: #0f766e;
+  --teal-deep: #0b5a54;
+  --line: rgba(20, 32, 28, 0.12);
+  --line-strong: rgba(20, 32, 28, 0.22);
+  --bg-1: #e8f2ee;
+  --bg-2: #f3efe6;
+  --bg-3: #dce8e3;
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--ink);
+  background-color: var(--bg-1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(165deg, var(--bg-1) 0%, var(--bg-2) 48%, var(--bg-3) 100%),
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 18px,
+      rgba(20, 32, 28, 0.015) 18px,
+      rgba(20, 32, 28, 0.015) 19px
+    );
+  background-attachment: fixed;
+}
+
+button,
+textarea {
+  font: inherit;
+}
