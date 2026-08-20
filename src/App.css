@@ -147,6 +147,100 @@
   color: var(--teal-deep);
 }
 
+.analysis {
+  display: grid;
+  gap: 1rem;
+}
+
+.match-score {
+  padding: 1.35rem 1.45rem 1.5rem;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.74);
+  backdrop-filter: blur(8px);
+  animation: rise-in 0.45s ease-out both;
+}
+
+.match-score h2 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.match-score__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 1.75rem;
+}
+
+.match-score__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3.1rem, 8vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  line-height: 0.9;
+  color: var(--ink);
+}
+
+.match-score__meta {
+  display: grid;
+  gap: 0.45rem;
+  min-width: min(100%, 28ch);
+  flex: 1;
+}
+
+.match-score__category {
+  margin: 0;
+  width: fit-content;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.match-score__explanation {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.match-score--strong {
+  border-color: rgba(15, 118, 110, 0.28);
+  background: linear-gradient(160deg, rgba(204, 251, 241, 0.62), rgba(255, 255, 255, 0.78));
+}
+
+.match-score--strong .match-score__category {
+  background: rgba(15, 118, 110, 0.14);
+  color: var(--teal-deep);
+}
+
+.match-score--potential {
+  border-color: rgba(180, 83, 9, 0.24);
+  background: linear-gradient(160deg, rgba(255, 237, 213, 0.62), rgba(255, 255, 255, 0.78));
+}
+
+.match-score--potential .match-score__category {
+  background: rgba(180, 83, 9, 0.14);
+  color: #9a3412;
+}
+
+.match-score--weak {
+  border-color: rgba(67, 84, 68, 0.22);
+  background: linear-gradient(160deg, rgba(229, 231, 235, 0.62), rgba(255, 255, 255, 0.78));
+}
+
+.match-score--weak .match-score__category {
+  background: rgba(67, 84, 68, 0.12);
+  color: #3f4a44;
+}
+
 .results {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
