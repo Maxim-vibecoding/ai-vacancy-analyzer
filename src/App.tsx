@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { analyzeVacancy, type AnalysisResult } from './analyzer'
+import { calculateMatchScore, type MatchScoreResult } from './matchScore'
 import './App.css'
 
 const SAMPLE_VACANCY = `Мы ищем Senior Frontend-разработчика в продуктовую команду.
@@ -38,21 +39,51 @@ function ResultBlock({ title, items, accent }: ResultSection) {
   )
 }
 
+function matchAccent(category: MatchScoreResult['category']): string {
+  if (category === 'Strong Match') {
+    return 'strong'
+  }
+  if (category === 'Potential Match') {
+    return 'potential'
+  }
+  return 'weak'
+}
+
+function MatchScoreBlock({ result }: { result: MatchScoreResult }) {
+  return (
+    <section
+      className={`match-score match-score--${matchAccent(result.category)}`}
+      aria-labelledby="heading-match-score"
+    >
+      <h2 id="heading-match-score">Оценка соответствия</h2>
+      <div className="match-score__body">
+        <p className="match-score__value">{result.score}%</p>
+        <div className="match-score__meta">
+          <p className="match-score__category">{result.category}</p>
+          <p className="match-score__explanation">{result.explanation}</p>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function App() {
   const [text, setText] = useState('')
   const [result, setResult] = useState<AnalysisResult | null>(null)
+  const [match, setMatch] = useState<MatchScoreResult | null>(null)
   const [hasAnalyzed, setHasAnalyzed] = useState(false)
 
   function handleAnalyze(event: FormEvent) {
     event.preventDefault()
-    const analysis = analyzeVacancy(text)
-    setResult(analysis)
+    setResult(analyzeVacancy(text))
+    setMatch(calculateMatchScore(text))
     setHasAnalyzed(true)
   }
 
   function handleSample() {
     setText(SAMPLE_VACANCY)
     setResult(null)
+    setMatch(null)
     setHasAnalyzed(false)
   }
 
@@ -92,16 +123,19 @@ function App() {
           </div>
         </form>
 
-        {hasAnalyzed && result && (
-          <div className="results" aria-live="polite">
-            <ResultBlock title="Ключевые требования" items={result.requirements} accent="requirements" />
-            <ResultBlock title="Технологии" items={result.technologies} accent="technologies" />
-            <ResultBlock
-              title="Управленческие компетенции"
-              items={result.management}
-              accent="management"
-            />
-            <ResultBlock title="Требуемый опыт" items={result.experience} accent="experience" />
+        {hasAnalyzed && result && match && (
+          <div className="analysis" aria-live="polite">
+            <MatchScoreBlock result={match} />
+            <div className="results">
+              <ResultBlock title="Ключевые требования" items={result.requirements} accent="requirements" />
+              <ResultBlock title="Технологии" items={result.technologies} accent="technologies" />
+              <ResultBlock
+                title="Управленческие компетенции"
+                items={result.management}
+                accent="management"
+              />
+              <ResultBlock title="Требуемый опыт" items={result.experience} accent="experience" />
+            </div>
           </div>
         )}
       </main>
