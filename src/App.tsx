@@ -61,7 +61,7 @@ function App() {
       <div className="page__glow" aria-hidden="true" />
       <header className="hero">
         <p className="hero__brand">AI Vacancy Analyzer</p>
-        <h1 className="hero__title">Разберите вакансию на понятные блоки</h1>
+        <h1 className="hero__title">Быстрый анализ вакансии</h1>
         <p className="hero__lead">
           Вставьте текст вакансии — демонстрационный анализатор выделит требования, технологии,
           управленческие компетенции и опыт.
